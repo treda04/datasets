@@ -1,0 +1,132 @@
+{"event_id": "e1", "host": "PC1-CORP", "timestamp": 1717000000.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e2", "host": "PC1-CORP", "timestamp": 1717000000.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e3", "host": "PC1-CORP", "timestamp": 1717000000.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e87", "host": "WEB-LINUX-01", "timestamp": 1717000000.5307193, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e4", "host": "PC1-CORP", "timestamp": 1717000000.75, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e5", "host": "PC1-CORP", "timestamp": 1717000001.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e6", "host": "PC1-CORP", "timestamp": 1717000001.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e7", "host": "PC1-CORP", "timestamp": 1717000001.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e103", "host": "WEB-LINUX-01", "timestamp": 1717000001.5958395, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e8", "host": "PC1-CORP", "timestamp": 1717000001.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e94", "host": "WEB-LINUX-01", "timestamp": 1717000001.8549168, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e9", "host": "PC1-CORP", "timestamp": 1717000002.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e104", "host": "WEB-LINUX-01", "timestamp": 1717000002.0200286, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e10", "host": "PC1-CORP", "timestamp": 1717000002.25, "model": "cicids", "score": 0.9998, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e11", "host": "PC1-CORP", "timestamp": 1717000002.5, "model": "cicids", "score": 0.9998, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e12", "host": "PC1-CORP", "timestamp": 1717000002.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e13", "host": "PC1-CORP", "timestamp": 1717000003.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e14", "host": "PC1-CORP", "timestamp": 1717000003.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e110", "host": "WEB-LINUX-01", "timestamp": 1717000003.26805, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e109", "host": "WEB-LINUX-01", "timestamp": 1717000003.422773, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e15", "host": "PC1-CORP", "timestamp": 1717000003.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e16", "host": "PC1-CORP", "timestamp": 1717000003.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e17", "host": "PC1-CORP", "timestamp": 1717000004.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e18", "host": "PC1-CORP", "timestamp": 1717000004.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e86", "host": "WEB-LINUX-01", "timestamp": 1717000004.3727596, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e89", "host": "WEB-LINUX-01", "timestamp": 1717000004.4088125, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e19", "host": "PC1-CORP", "timestamp": 1717000004.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e102", "host": "WEB-LINUX-01", "timestamp": 1717000004.5579655, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e20", "host": "PC1-CORP", "timestamp": 1717000004.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e21", "host": "PC1-CORP", "timestamp": 1717000005.0, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e22", "host": "PC1-CORP", "timestamp": 1717000005.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e107", "host": "WEB-LINUX-01", "timestamp": 1717000005.3395565, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e23", "host": "PC1-CORP", "timestamp": 1717000005.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e82", "host": "WEB-LINUX-01", "timestamp": 1717000005.5005863, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e24", "host": "PC1-CORP", "timestamp": 1717000005.75, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e25", "host": "PC1-CORP", "timestamp": 1717000006.0, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e26", "host": "PC1-CORP", "timestamp": 1717000006.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e27", "host": "PC1-CORP", "timestamp": 1717000006.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e28", "host": "PC1-CORP", "timestamp": 1717000006.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e92", "host": "WEB-LINUX-01", "timestamp": 1717000006.8050103, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e29", "host": "PC1-CORP", "timestamp": 1717000007.0, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e30", "host": "PC1-CORP", "timestamp": 1717000007.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e106", "host": "WEB-LINUX-01", "timestamp": 1717000007.4036193, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e31", "host": "PC1-CORP", "timestamp": 1717000007.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e98", "host": "WEB-LINUX-01", "timestamp": 1717000007.5706875, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e32", "host": "PC1-CORP", "timestamp": 1717000007.75, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e33", "host": "PC1-CORP", "timestamp": 1717000008.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e34", "host": "PC1-CORP", "timestamp": 1717000008.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e85", "host": "WEB-LINUX-01", "timestamp": 1717000008.4384365, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e35", "host": "PC1-CORP", "timestamp": 1717000008.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e36", "host": "PC1-CORP", "timestamp": 1717000008.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e37", "host": "PC1-CORP", "timestamp": 1717000009.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e38", "host": "PC1-CORP", "timestamp": 1717000009.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e39", "host": "PC1-CORP", "timestamp": 1717000009.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e40", "host": "PC1-CORP", "timestamp": 1717000009.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e41", "host": "PC1-CORP", "timestamp": 1717000010.0, "model": "cicids", "score": 0.9999, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e42", "host": "PC1-CORP", "timestamp": 1717000010.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e43", "host": "PC1-CORP", "timestamp": 1717000010.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e97", "host": "WEB-LINUX-01", "timestamp": 1717000010.724562, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e44", "host": "PC1-CORP", "timestamp": 1717000010.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e45", "host": "PC1-CORP", "timestamp": 1717000011.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e46", "host": "PC1-CORP", "timestamp": 1717000011.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e47", "host": "PC1-CORP", "timestamp": 1717000011.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e48", "host": "PC1-CORP", "timestamp": 1717000011.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e49", "host": "PC1-CORP", "timestamp": 1717000012.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e50", "host": "PC1-CORP", "timestamp": 1717000012.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e51", "host": "PC1-CORP", "timestamp": 1717000012.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e105", "host": "WEB-LINUX-01", "timestamp": 1717000012.7136889, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e52", "host": "PC1-CORP", "timestamp": 1717000012.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e81", "host": "WEB-LINUX-01", "timestamp": 1717000012.788536, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e108", "host": "WEB-LINUX-01", "timestamp": 1717000012.9607077, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e88", "host": "WEB-LINUX-01", "timestamp": 1717000012.9976888, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e53", "host": "PC1-CORP", "timestamp": 1717000013.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e54", "host": "PC1-CORP", "timestamp": 1717000013.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e55", "host": "PC1-CORP", "timestamp": 1717000013.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e56", "host": "PC1-CORP", "timestamp": 1717000013.75, "model": "cicids", "score": 0.9998, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e57", "host": "PC1-CORP", "timestamp": 1717000014.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e101", "host": "WEB-LINUX-01", "timestamp": 1717000014.0914366, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e58", "host": "PC1-CORP", "timestamp": 1717000014.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e59", "host": "PC1-CORP", "timestamp": 1717000014.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e83", "host": "WEB-LINUX-01", "timestamp": 1717000014.7294242, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e60", "host": "PC1-CORP", "timestamp": 1717000014.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e61", "host": "PC1-CORP", "timestamp": 1717000015.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e62", "host": "PC1-CORP", "timestamp": 1717000015.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e63", "host": "PC1-CORP", "timestamp": 1717000015.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e64", "host": "PC1-CORP", "timestamp": 1717000015.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e65", "host": "PC1-CORP", "timestamp": 1717000016.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e91", "host": "WEB-LINUX-01", "timestamp": 1717000016.116385, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e96", "host": "WEB-LINUX-01", "timestamp": 1717000016.1425655, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e90", "host": "WEB-LINUX-01", "timestamp": 1717000016.1886091, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e66", "host": "PC1-CORP", "timestamp": 1717000016.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e67", "host": "PC1-CORP", "timestamp": 1717000016.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e99", "host": "WEB-LINUX-01", "timestamp": 1717000016.5880933, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e68", "host": "PC1-CORP", "timestamp": 1717000016.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e95", "host": "WEB-LINUX-01", "timestamp": 1717000016.9498873, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e69", "host": "PC1-CORP", "timestamp": 1717000017.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e100", "host": "WEB-LINUX-01", "timestamp": 1717000017.234138, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e70", "host": "PC1-CORP", "timestamp": 1717000017.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e71", "host": "PC1-CORP", "timestamp": 1717000017.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e72", "host": "PC1-CORP", "timestamp": 1717000017.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e84", "host": "WEB-LINUX-01", "timestamp": 1717000017.8435915, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e73", "host": "PC1-CORP", "timestamp": 1717000018.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e74", "host": "PC1-CORP", "timestamp": 1717000018.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e75", "host": "PC1-CORP", "timestamp": 1717000018.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e76", "host": "PC1-CORP", "timestamp": 1717000018.75, "model": "cicids", "score": 0.9998, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e77", "host": "PC1-CORP", "timestamp": 1717000019.0, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e93", "host": "WEB-LINUX-01", "timestamp": 1717000019.1442614, "model": "adfa", "score": 0.0071, "is_attack": false, "mitre_technique": null, "top_class": null}
+{"event_id": "e78", "host": "PC1-CORP", "timestamp": 1717000019.25, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e79", "host": "PC1-CORP", "timestamp": 1717000019.5, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e80", "host": "PC1-CORP", "timestamp": 1717000019.75, "model": "cicids", "score": 1.0, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e111", "host": "PC1-CORP", "timestamp": 1717000020.0, "model": "cicids", "score": 0.9492, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e112", "host": "PC1-CORP", "timestamp": 1717000020.3, "model": "cicids", "score": 0.9815, "is_attack": true, "mitre_technique": "T1046", "top_class": "Port Scanning"}
+{"event_id": "e113", "host": "PC1-CORP", "timestamp": 1717000020.6, "model": "cicids", "score": 0.8876, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e114", "host": "PC1-CORP", "timestamp": 1717000020.9, "model": "cicids", "score": 0.8471, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e115", "host": "PC1-CORP", "timestamp": 1717000021.2, "model": "cicids", "score": 0.905, "is_attack": false, "mitre_technique": null, "top_class": "Normal Traffic"}
+{"event_id": "e116", "host": "PC1-CORP", "timestamp": 1717000025.0, "model": "cicids", "score": 1.0, "is_attack": true, "mitre_technique": "T1110", "top_class": "Brute Force"}
+{"event_id": "e117", "host": "PC1-CORP", "timestamp": 1717000025.4, "model": "cicids", "score": 1.0, "is_attack": true, "mitre_technique": "T1110", "top_class": "Brute Force"}
+{"event_id": "e118", "host": "PC1-CORP", "timestamp": 1717000025.8, "model": "cicids", "score": 1.0, "is_attack": true, "mitre_technique": "T1110", "top_class": "Brute Force"}
+{"event_id": "e119", "host": "PC1-CORP", "timestamp": 1717000026.0, "model": "lateral", "score": 0.7167, "is_attack": false, "mitre_technique": "T1059", "top_class": null}
+{"event_id": "e120", "host": "PC1-CORP", "timestamp": 1717000035.0, "model": "siem", "score": 0.5078, "is_attack": false, "mitre_technique": "T1071", "top_class": null}
+{"event_id": "e121", "host": "PC1-CORP", "timestamp": 1717000036.0, "model": "lateral", "score": 0.7167, "is_attack": false, "mitre_technique": "T1059", "top_class": null}
+{"event_id": "e122", "host": "DC01-CORP", "timestamp": 1717000045.0, "model": "lateral", "score": 0.7167, "is_attack": false, "mitre_technique": "T1078", "top_class": null}
+{"event_id": "e123", "host": "DC01-CORP", "timestamp": 1717000046.0, "model": "siem", "score": 0.3564, "is_attack": false, "mitre_technique": "T1059", "top_class": null}
+{"event_id": "e124", "host": "DC01-CORP", "timestamp": 1717000050.0, "model": "siem", "score": 0.7729, "is_attack": true, "mitre_technique": "T1071", "top_class": null}
+{"event_id": "e125", "host": "DC01-CORP", "timestamp": 1717000055.0, "model": "cicids", "score": 0.9989, "is_attack": true, "mitre_technique": "T1190", "top_class": "Web Attacks"}
+{"event_id": "e126", "host": "DC01-CORP", "timestamp": 1717000055.5, "model": "cicids", "score": 1.0, "is_attack": true, "mitre_technique": "T1190", "top_class": "Web Attacks"}
+{"event_id": "e127", "host": "DC01-CORP", "timestamp": 1717000056.0, "model": "cicids", "score": 0.9981, "is_attack": true, "mitre_technique": "T1190", "top_class": "Web Attacks"}
+{"event_id": "e128", "host": "DC01-CORP", "timestamp": 1717000056.5, "model": "cicids", "score": 1.0, "is_attack": true, "mitre_technique": "T1190", "top_class": "Web Attacks"}
+{"type": "correlated", "host": "DC01-CORP", "window_start": 1717000050.0, "window_end": 1717000055.0, "models_triggered": ["cicids", "siem"], "mitre_techniques": ["T1071", "T1190"], "severity": "CRITICAL", "n_alerts": 2, "max_score": 0.9989}
+{"type": "correlated", "host": "DC01-CORP", "window_start": 1717000050.0, "window_end": 1717000055.5, "models_triggered": ["cicids", "siem"], "mitre_techniques": ["T1071", "T1190"], "severity": "CRITICAL", "n_alerts": 3, "max_score": 1.0}
+{"type": "correlated", "host": "DC01-CORP", "window_start": 1717000050.0, "window_end": 1717000056.0, "models_triggered": ["cicids", "siem"], "mitre_techniques": ["T1071", "T1190"], "severity": "CRITICAL", "n_alerts": 4, "max_score": 1.0}
+{"type": "correlated", "host": "DC01-CORP", "window_start": 1717000050.0, "window_end": 1717000056.5, "models_triggered": ["cicids", "siem"], "mitre_techniques": ["T1071", "T1190"], "severity": "CRITICAL", "n_alerts": 5, "max_score": 1.0}

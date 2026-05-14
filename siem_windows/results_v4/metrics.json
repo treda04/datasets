@@ -1,0 +1,18 @@
+{
+  "version": 4,
+  "best_method": "LightGBM",
+  "f1_default": 0.641,
+  "f1_calibrated": 0.7528,
+  "f1_attack": 0.7385,
+  "f1_normal": 0.7671,
+  "best_threshold": 0.6633,
+  "roc_auc": 0.7231,
+  "avg_precision": 0.7254,
+  "f1_cv_mean": 0.8503,
+  "f1_cv_std": 0.0598,
+  "overfit_gap": 0.2093,
+  "n_features_kept": 95,
+  "top_feature": "wfp_network_score_roll3_std",
+  "top_feature_importance": 128.0,
+  "leakage_warning": true
+}

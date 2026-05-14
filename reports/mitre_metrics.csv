@@ -1,0 +1,19 @@
+model,technique_id,technique_name,tactic,f1,precision,recall,support_total,support_attack,support_normal
+SIEM_Windows_v3,T1053.005,Scheduled Task,Execution,,,,7,0,7
+SIEM_Windows_v3,T1059,Command and Scripting,Execution,0.566,0.3947,1.0,39,15,24
+SIEM_Windows_v3,T1068,Exploitation for Priv Esc,Privilege Escalation,0.6667,0.5,1.0,69,34,35
+SIEM_Windows_v3,T1078,Valid Accounts,Initial Access,0.6667,0.5,1.0,69,34,35
+SIEM_Windows_v3,T1087.002,Domain Account Discovery,Discovery,,,,5,0,5
+Lateral_Movement,T1053.005,Scheduled Task,Execution,0.9231,0.8571,1.0,7,6,1
+Lateral_Movement,T1055,Process Injection,Defense Evasion,0.6667,1.0,0.5,2,2,0
+Lateral_Movement,T1059,Command and Scripting,Execution,0.9048,0.95,0.8636,27,22,5
+Lateral_Movement,T1059.001,PowerShell,Execution,0.8889,1.0,0.8,11,10,1
+Lateral_Movement,T1068,Exploitation for Priv Esc,Privilege Escalation,0.8947,0.8947,0.8947,21,19,2
+Lateral_Movement,T1071,Application Layer Protocol,Command and Control,0.8936,0.913,0.875,29,24,5
+Lateral_Movement,T1071.004,DNS,Command and Control,0.9091,0.9375,0.8824,19,17,2
+Lateral_Movement,T1078,Valid Accounts,Initial Access,0.9,0.9,0.9,22,20,2
+Lateral_Movement,T1110,Brute Force,Credential Access,1.0,1.0,1.0,1,1,0
+Lateral_Movement,T1112,Modify Registry,Defense Evasion,0.8696,0.9091,0.8333,31,24,7
+Lateral_Movement,T1543.003,Windows Service,Persistence,1.0,1.0,1.0,1,1,0
+Lateral_Movement,T1558.003,Kerberoasting,Credential Access,1.0,1.0,1.0,3,3,0
+Lateral_Movement,T1574,Hijack Execution Flow,Persistence,0.9091,0.9524,0.8696,29,23,6

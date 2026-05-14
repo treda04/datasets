@@ -1,0 +1,71 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "index": {
+      "refresh_interval": "5s"
+    }
+  },
+  "mappings": {
+    "dynamic": "true",
+    "properties": {
+      "@timestamp": {
+        "type": "date"
+      },
+      "host": {
+        "type": "keyword"
+      },
+      "ml_score": {
+        "type": "float"
+      },
+      "alert_level": {
+        "type": "keyword"
+      },
+      "severity_int": {
+        "type": "integer"
+      },
+      "dominant_model": {
+        "type": "keyword"
+      },
+      "mitre_tactic": {
+        "type": "keyword"
+      },
+      "mitre_technique": {
+        "type": "keyword"
+      },
+      "mitre_url": {
+        "type": "keyword",
+        "index": false
+      },
+      "trigger_event_id": {
+        "type": "integer"
+      },
+      "window_event_count": {
+        "type": "integer"
+      },
+      "model_scores": {
+        "type": "object",
+        "properties": {
+          "siem_windows": {
+            "type": "float"
+          },
+          "lateral_movement": {
+            "type": "float"
+          },
+          "cicids": {
+            "type": "float"
+          },
+          "adfa_ld": {
+            "type": "float"
+          }
+        }
+      },
+      "event_ids_in_window": {
+        "type": "integer"
+      },
+      "service": {
+        "type": "keyword"
+      }
+    }
+  }
+}

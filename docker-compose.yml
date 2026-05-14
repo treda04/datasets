@@ -1,0 +1,93 @@
+# ──────────────────────────────────────────────────────────────────
+#  PFE-SOC-ML — Stack de démo
+#  Lance Kafka + ELK pour la démo end-to-end.
+#
+#  Démarrer :
+#      docker compose up -d
+#
+#  Vérifier que tout monte :
+#      docker compose ps
+#
+#  Accès :
+#      Kibana       http://localhost:5601
+#      Elasticsearch http://localhost:9200
+#      Kafka         localhost:9092
+# ──────────────────────────────────────────────────────────────────
+
+version: "3.8"
+
+services:
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: pfe-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks: [pfe]
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: pfe-kafka
+    depends_on: [zookeeper]
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    networks: [pfe]
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    container_name: pfe-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ports:
+      - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q yellow\\|green"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks: [pfe]
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.3
+    container_name: pfe-kibana
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    environment:
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    networks: [pfe]
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.3
+    container_name: pfe-logstash
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kafka:
+        condition: service_started
+    volumes:
+      - ./integration/logstash:/usr/share/logstash/pipeline:ro
+    environment:
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+    networks: [pfe]
+
+networks:
+  pfe:
+    driver: bridge
+
+volumes:
+  es-data:

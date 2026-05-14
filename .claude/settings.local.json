@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Tee-Object *)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe -c \"import json; f=open\\('siem_windows/data/raw/day2/apt29_evals_day2_manual_2020-05-02035409.json','r',encoding='utf-8',errors='ignore'\\); ts=[]; [ts.append\\(json.loads\\(l\\).get\\('@timestamp'\\)\\) for l in f if l.strip\\(\\) for _ in [None] if len\\(ts\\)<5]; print\\('first5:',ts\\); f.close\\(\\)\")",
+      "Bash(.venv/Scripts/python.exe *)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\check_artifacts.py 2>&1 | Select-Object -Last 60)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\build_excel_report.py 2>&1)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\mitre_evaluation.py 2>&1)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\build_mitre_notebook.py 2>&1)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\setup_models_dir.py 2>&1)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe -m pytest tests/test_orchestrator.py -v 2>&1 | Select-Object -Last 60)",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -m pip install pytest -q 2>&1 | Select-Object -Last 3; .venv\\\\Scripts\\\\python.exe -m pytest tests/test_orchestrator.py -v 2>&1 | Select-Object -Last 50)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 80)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1; echo \"---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 35)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1 | Select-Object -Last 3; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 30)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1 | Select-Object -Last 3; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 40)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\setup_models_dir.py 2>&1 | Select-Object -Last 3; echo \"---DEMO---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 40)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1 | Select-Object -Last 3; echo \"---DEMO---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 50)",
+      "PowerShell(.venv\\\\Scripts\\\\python.exe -m pytest tests/test_orchestrator.py -q 2>&1 | Select-Object -Last 10)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\mitre_evaluation_v4.py 2>&1 | Select-Object -Last 30)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\setup_models_dir.py 2>&1 | Select-Object -Last 6; echo \"---TESTS---\"; .venv\\\\Scripts\\\\python.exe -m pytest tests/ -q 2>&1 | Select-Object -Last 5)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\build_excel_report.py 2>&1; echo \"---DEMO---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 25)",
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1 | Select-Object -Last 3; echo \"---DEMO v4---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 30)"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+model,technique_id,technique_name,tactic,f1,precision,recall,support_total,support_attack,support_normal
+SIEM_v4_LightGBM,T1003,OS Credential Dumping,Credential Access,0.7213,0.7586,0.6875,67,32,35
+SIEM_v4_LightGBM,T1053.005,Scheduled Task,Execution,,,,7,0,7
+SIEM_v4_LightGBM,T1059,Command and Scripting,Execution,0.48,0.6,0.4,39,15,24
+SIEM_v4_LightGBM,T1059.001,PowerShell,Execution,0.0,0.0,0.0,25,10,15
+SIEM_v4_LightGBM,T1071,Application Layer Protocol,Command and Control,0.7385,0.7742,0.7059,69,34,35
+SIEM_v4_LightGBM,T1078,Valid Accounts,Initial Access,0.7385,0.7742,0.7059,69,34,35
+SIEM_v4_LightGBM,T1083,File and Directory Discovery,Discovery,0.6909,0.7308,0.6552,64,29,35
+SIEM_v4_LightGBM,T1105,Ingress Tool Transfer,Command and Control,0.7302,0.7667,0.697,68,33,35
+SIEM_v4_LightGBM,T1106,Native API,Execution,0.6909,0.7308,0.6552,64,29,35
+SIEM_v4_LightGBM,T1112,Modify Registry,Defense Evasion,0.7385,0.7742,0.7059,69,34,35
+SIEM_v4_LightGBM,T1134,Access Token Manipulation,Privilege Escalation,0.7037,0.76,0.6552,63,29,34
+SIEM_v4_LightGBM,T1574,Hijack Execution Flow,Persistence,0.7385,0.7742,0.7059,69,34,35
+Lateral_Movement,T1053.005,Scheduled Task,Execution,0.9231,0.8571,1.0,7,6,1
+Lateral_Movement,T1055,Process Injection,Defense Evasion,0.6667,1.0,0.5,2,2,0
+Lateral_Movement,T1059,Command and Scripting,Execution,0.9048,0.95,0.8636,27,22,5
+Lateral_Movement,T1059.001,PowerShell,Execution,0.8889,1.0,0.8,11,10,1
+Lateral_Movement,T1068,Exploitation for Priv Esc,Privilege Escalation,0.8947,0.8947,0.8947,21,19,2
+Lateral_Movement,T1071,Application Layer Protocol,Command and Control,0.8936,0.913,0.875,29,24,5
+Lateral_Movement,T1071.004,DNS,Command and Control,0.9091,0.9375,0.8824,19,17,2
+Lateral_Movement,T1078,Valid Accounts,Initial Access,0.9,0.9,0.9,22,20,2
+Lateral_Movement,T1110,Brute Force,Credential Access,1.0,1.0,1.0,1,1,0
+Lateral_Movement,T1112,Modify Registry,Defense Evasion,0.8696,0.9091,0.8333,31,24,7
+Lateral_Movement,T1543.003,Windows Service,Persistence,1.0,1.0,1.0,1,1,0
+Lateral_Movement,T1558.003,Kerberoasting,Credential Access,1.0,1.0,1.0,3,3,0
+Lateral_Movement,T1574,Hijack Execution Flow,Persistence,0.9091,0.9524,0.8696,29,23,6

@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env
+.envrc
+*.egg-info/
+
+# Données volumineuses (sources publiques — à télécharger via README)
+cicids2017/data/cicids2017.csv
+adfa_ld/data/ADFA-LD/
+adfa_ld/data/ADFA-LD.zip
+siem_dataset/data/otrf_datasets/datasets/compound/apt29/day*/apt29_evals_day*_manual.zip
+siem_dataset/data/otrf_datasets/datasets/compound/apt29/day*/pcaps/*.zip
+siem_dataset/data/otrf_datasets/datasets/compound/apt29/day*/zeek/*.zip
+siem_dataset/data/otrf_datasets/datasets/atomic/**/*.zip
+siem_windows/data/raw/
+
+# Données processed (régénérables via scripts)
+**/data/processed/
+**/data/processed_v2/
+**/X_train*.csv
+**/X_test*.csv
+**/y_train*.csv
+**/y_test*.csv
+**/train.parquet
+**/test.parquet
+
+# Modèles & artefacts (régénérables)
+**/saved_models/*.pkl
+**/saved_models/*_model.pkl
+**/models/*.pkl
+**/results/
+**/results_v2/
+
+# Notebooks Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Secrets
+*.key
+*.pem
+.env.local

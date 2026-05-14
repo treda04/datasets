@@ -1,0 +1,23 @@
+[
+  "total_events",
+  "events_per_minute",
+  "cnt_4624",
+  "cnt_4648",
+  "cnt_4672",
+  "cnt_4688",
+  "cnt_4697",
+  "cnt_4702",
+  "cnt_4720",
+  "cnt_4728",
+  "cnt_4732",
+  "cnt_4738",
+  "cnt_4798",
+  "cnt_4799",
+  "lateral_move_score",
+  "persistence_score",
+  "priv_escalation_score",
+  "recon_score",
+  "execution_score",
+  "entropy_eventids",
+  "distinct_eventids"
+]

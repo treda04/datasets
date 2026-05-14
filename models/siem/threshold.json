@@ -1,0 +1,5 @@
+{
+  "threshold": 0.6633,
+  "method": "F1-macro optimal (LightGBM)",
+  "f1_at_threshold": 0.7528
+}
