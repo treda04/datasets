@@ -162,6 +162,7 @@ C'est un **risque PFE majeur** : la chaîne de bout en bout n'est pas démontrab
 **Faiblesses (déjà identifiées dans `AUDIT_REPORT.md`) :**
 1. **Split aléatoire** (`random_state=42`) — risque de fuite inter-session : plusieurs traces d'une même attaque se retrouvent dans train ET test. Gravité : **MODÉRÉE**.
 2. **Vectorizer fit sur tout le dataset** avant split (ligne 53–55 de `preprocess_adfa.py`). Le vocabulaire des n-grams est appris sur train+test → fuite indirecte. Gravité : **FAIBLE**.
+
 3. **Pas de courbe ROC ni PR**, pas de calibration de seuil → impossible d'arbitrer FPR/TPR en production.
 4. **Pas de séparation par famille d'attaque** dans l'évaluation (binaire 0/1 uniquement) — on ne sait pas si le modèle généralise à une attaque jamais vue.
 

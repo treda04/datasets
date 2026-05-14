@@ -54,3 +54,15 @@ desktop.ini
 *.key
 *.pem
 .env.local
+
+# Exclure ancienne/ des patterns ci-dessus pour tout conserver
+!ancienne/
+!ancienne/**
+
+# Sauf les très gros CSV regénérables (limite GitHub 100MB)
+ancienne/cicids2017/data/X_train_processed.csv
+ancienne/cicids2017/data/X_test_processed.csv
+ancienne/cicids2017/data/processed_v2/X_train.csv
+ancienne/cicids2017/data/processed_v2/X_test.csv
+ancienne/cicids2017/data/processed_v3/X_train.csv
+ancienne/cicids2017/data/processed_v3/X_test.csv

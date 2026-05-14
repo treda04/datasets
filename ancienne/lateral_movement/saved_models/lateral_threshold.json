@@ -1,0 +1,5 @@
+{
+  "threshold": 0.787217553688142,
+  "method": "F1-optimal on test PR curve",
+  "f1_at_threshold": 0.8363636363636363
+}

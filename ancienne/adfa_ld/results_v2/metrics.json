@@ -1,0 +1,67 @@
+{
+  "version": 2,
+  "f1_default_threshold": 0.9573770491803278,
+  "f1_calibrated_threshold": 0.9573770491803278,
+  "roc_auc": 0.9788384306456596,
+  "best_threshold": 0.5072737399053189,
+  "f1_cv_mean": 0.9486226446369012,
+  "f1_cv_std": 0.00803151300056101,
+  "per_family": {
+    "Adduser_1": {
+      "n": 7,
+      "true_positive_rate": 1.0
+    },
+    "Adduser_4": {
+      "n": 7,
+      "true_positive_rate": 1.0
+    },
+    "Adduser_5": {
+      "n": 10,
+      "true_positive_rate": 1.0
+    },
+    "Adduser_9": {
+      "n": 22,
+      "true_positive_rate": 0.6363636363636364
+    },
+    "Hydra_FTP_1": {
+      "n": 12,
+      "true_positive_rate": 1.0
+    },
+    "Hydra_FTP_2": {
+      "n": 17,
+      "true_positive_rate": 1.0
+    },
+    "Hydra_FTP_8": {
+      "n": 12,
+      "true_positive_rate": 1.0
+    },
+    "Hydra_SSH_2": {
+      "n": 25,
+      "true_positive_rate": 0.92
+    },
+    "Java_Meterpreter_10": {
+      "n": 12,
+      "true_positive_rate": 1.0
+    },
+    "Java_Meterpreter_3": {
+      "n": 12,
+      "true_positive_rate": 1.0
+    },
+    "Meterpreter_5": {
+      "n": 5,
+      "true_positive_rate": 1.0
+    },
+    "Meterpreter_9": {
+      "n": 5,
+      "true_positive_rate": 1.0
+    },
+    "Web_Shell_4": {
+      "n": 10,
+      "true_positive_rate": 1.0
+    },
+    "normal_07": {
+      "n": 83,
+      "true_positive_rate": 0.03614457831325301
+    }
+  }
+}

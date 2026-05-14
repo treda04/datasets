@@ -1,0 +1,10 @@
+                precision    recall  f1-score   support
+
+   Brute Force       1.00      1.00      1.00      1183
+Normal Traffic       1.00      1.00      1.00     80249
+ Port Scanning       1.00      1.00      1.00     18139
+   Web Attacks       0.96      0.99      0.98       429
+
+      accuracy                           1.00    100000
+     macro avg       0.99      1.00      0.99    100000
+  weighted avg       1.00      1.00      1.00    100000

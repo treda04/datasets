@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "f1_macro_test": 0.9515240463784929,
+  "f1_weighted_test": 0.9983452584665833,
+  "f1_cv_mean": 0.997544804601381,
+  "f1_cv_std": 0.00045773218109282615,
+  "n_classes": 7,
+  "classes": [
+    "Bots",
+    "Brute Force",
+    "DDoS",
+    "DoS",
+    "Normal Traffic",
+    "Port Scanning",
+    "Web Attacks"
+  ],
+  "top_feature": "Idle Max",
+  "top_feature_importance": 0.251431405544281,
+  "leakage_warning": false
+}

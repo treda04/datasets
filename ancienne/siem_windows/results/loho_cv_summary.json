@@ -1,0 +1,70 @@
+{
+  "method": "Leave-One-Host-Out CV (4 folds)",
+  "f1_05_mean": 0.5120976692563818,
+  "f1_05_std": 0.1288909368708958,
+  "f1_optimal_mean": 0.6691775466952274,
+  "f1_optimal_std": 0.013988562168114218,
+  "roc_auc_mean": 0.538235294117647,
+  "roc_auc_std": 0.13293035754367233,
+  "ap_mean": 0.614531728035977,
+  "ap_std": 0.12641792980536318,
+  "overfit_gap_mean": 0.3218599793751799,
+  "per_host": [
+    {
+      "held_out_host": "NASHUA.dmevals.local",
+      "n_train": 207,
+      "n_test": 69,
+      "n_test_positive": 34,
+      "balance_test": 0.4927536231884058,
+      "f1_default_05": 0.43333333333333335,
+      "f1_optimal": 0.6601941743150156,
+      "best_threshold": 0.2608943089430894,
+      "roc_auc": 0.4752100840336134,
+      "avg_precision": 0.58544229036311,
+      "f1_train_05": 0.8681318681318682,
+      "overfit_gap": 0.4347985347985348
+    },
+    {
+      "held_out_host": "NEWYORK.dmevals.local",
+      "n_train": 207,
+      "n_test": 69,
+      "n_test_positive": 34,
+      "balance_test": 0.4927536231884058,
+      "f1_default_05": 0.6666666666666666,
+      "f1_optimal": 0.6666666662222221,
+      "best_threshold": 0.5073648971783835,
+      "roc_auc": 0.573109243697479,
+      "avg_precision": 0.6566399286987523,
+      "f1_train_05": 0.8369565217391305,
+      "overfit_gap": 0.17028985507246386
+    },
+    {
+      "held_out_host": "SCRANTON.dmevals.local",
+      "n_train": 207,
+      "n_test": 69,
+      "n_test_positive": 34,
+      "balance_test": 0.4927536231884058,
+      "f1_default_05": 0.5660377358490566,
+      "f1_optimal": 0.6896551719286563,
+      "best_threshold": 0.47339508872363767,
+      "roc_auc": 0.7063025210084034,
+      "avg_precision": 0.7584225441584915,
+      "f1_train_05": 0.7515151515151515,
+      "overfit_gap": 0.18547741566609488
+    },
+    {
+      "held_out_host": "UTICA.dmevals.local",
+      "n_train": 207,
+      "n_test": 69,
+      "n_test_positive": 34,
+      "balance_test": 0.4927536231884058,
+      "f1_default_05": 0.38235294117647056,
+      "f1_optimal": 0.6601941743150156,
+      "best_threshold": 0.16166666666666668,
+      "roc_auc": 0.39831932773109247,
+      "avg_precision": 0.45762214892355396,
+      "f1_train_05": 0.8792270531400966,
+      "overfit_gap": 0.4968741119636261
+    }
+  ]
+}

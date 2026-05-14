@@ -1,0 +1,5 @@
+method,f1_05,f1_macro_optimal,f1_attack_optimal,f1_normal_optimal,roc_auc,avg_precision,best_threshold,f1_cv_mean,f1_cv_std,overfit_gap
+RF baseline (raw features),0.6667,0.6087,0.4783,0.7391,0.5731,0.6566,0.632,0.6747,0.1103,0.008
+RF + host-normalized,0.5952,0.5965,0.5263,0.6667,0.5891,0.595,0.5439,0.7497,0.1535,0.1544
+XGBoost + host-normalized,0.5301,0.5919,0.5091,0.6747,0.5382,0.5792,0.5434,0.7945,0.0742,0.2644
+Stacking (RF+XGB+LR) -> LR,0.5432,0.5021,0.5526,0.4516,0.4025,0.4441,0.5142,0.2761,0.0556,-0.2671

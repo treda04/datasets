@@ -1,0 +1,66 @@
+{
+  "top_5_true_positives": [
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.9131281904326704,
+      "total_events": 26,
+      "window_start_iso": "2020-05-02T03:27:27.499000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.9130447284227714,
+      "total_events": 14,
+      "window_start_iso": "2020-05-02T08:29:15.257000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.887638807101338,
+      "total_events": 85,
+      "window_start_iso": "2020-05-02T08:28:15.257000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.8110232810578815,
+      "total_events": 166,
+      "window_start_iso": "2020-05-02T08:27:15.257000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.810493335229236,
+      "total_events": 207,
+      "window_start_iso": "2020-05-02T08:26:15.257000+00:00"
+    }
+  ],
+  "top_5_false_positives": [
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.6321796472615497,
+      "total_events": 507,
+      "window_start_iso": "2020-05-02T03:11:27.499000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.6192273407852988,
+      "total_events": 686,
+      "window_start_iso": "2020-05-02T02:55:27.499000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.6073648971783835,
+      "total_events": 728,
+      "window_start_iso": "2020-05-02T02:56:27.499000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.6073648971783835,
+      "total_events": 1696,
+      "window_start_iso": "2020-05-02T03:02:27.499000+00:00"
+    },
+    {
+      "host": "NEWYORK.dmevals.local",
+      "score": 0.6073648971783835,
+      "total_events": 1158,
+      "window_start_iso": "2020-05-02T03:03:27.499000+00:00"
+    }
+  ]
+}

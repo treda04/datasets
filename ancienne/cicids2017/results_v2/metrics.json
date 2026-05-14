@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "f1_macro_test": 0.9938607888678994,
+  "f1_weighted_test": 0.9997313644201559,
+  "f1_cv_mean": 0.9996448694854024,
+  "f1_cv_std": 2.066814225112698e-05,
+  "n_classes": 4,
+  "classes": [
+    "Brute Force",
+    "Normal Traffic",
+    "Port Scanning",
+    "Web Attacks"
+  ],
+  "top_feature": "Fwd Packet Length Std",
+  "top_feature_importance": 0.231747105717659,
+  "leakage_warning": false
+}

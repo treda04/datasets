@@ -1,0 +1,29 @@
+=== PREPROCESSING SIEM WINDOWS (OTRF Mordor APT29) ===
+
+  --- day1 (siem_windows\data\raw\day1) ---
+      100000 events lus...
+      Events lus : 196081  |  valides : 196081
+      Hosts trouvés : {'UTICA.dmevals.local': 11971, 'NASHUA.dmevals.local': 29056, 'NEWYORK.dmevals.local': 23935, 'SCRANTON.dmevals.local': 131119}
+      Fenêtres produites : 132  (positives=48)
+
+  --- day2 (siem_windows\data\raw\day2) ---
+      100000 events lus...
+      200000 events lus...
+      300000 events lus...
+      400000 events lus...
+      500000 events lus...
+      Events lus : 587286  |  valides : 587286
+      Hosts trouvés : {'UTICA.dmevals.local': 480297, 'SCRANTON.dmevals.local': 66419, 'NASHUA.dmevals.local': 11363, 'NEWYORK.dmevals.local': 29207}
+      Fenêtres produites : 144  (positives=88)
+
+  Split par host : train=['NASHUA.dmevals.local', 'SCRANTON.dmevals.local', 'UTICA.dmevals.local'], test=['NEWYORK.dmevals.local']
+  [OK] hosts disjoints train/test
+
+=== RÉSUMÉ ===
+Train : 207 fenêtres (102 positives, 49.3%)
+Test  : 69 fenêtres (34 positives, 49.3%)
+Features : 36
+Output : siem_windows\data\processed/
+Elapsed : 14.7s
+
+[OK] Lancer ensuite : python siem_windows/training/train_siem.py
