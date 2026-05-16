@@ -1,0 +1,29 @@
+{
+  "version": "v2",
+  "random_state": 42,
+  "vectorizer": {
+    "ngram_range": [
+      1,
+      3
+    ],
+    "max_features": 1500,
+    "min_df": 2,
+    "composition": {
+      "unigrammes": 91,
+      "bigrammes": 499,
+      "trigrammes": 910
+    }
+  },
+  "rf_params": {
+    "n_estimators": 200,
+    "max_depth": 20,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced"
+  },
+  "calibration": {
+    "method": "isotonic",
+    "cv": 5
+  },
+  "decision_threshold": 0.4000000000000001,
+  "threshold_choice_rule": "argmax F2 sur cross_val_predict probas du train (GroupKFold cv=5)"
+}
