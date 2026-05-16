@@ -30,6 +30,7 @@ siem_windows/data/raw/
 
 # Modèles & artefacts (régénérables)
 **/saved_models/*.pkl
+**/saved_models/**/*.pkl
 **/saved_models/*_model.pkl
 **/models/*.pkl
 **/results/

@@ -21,7 +21,8 @@
 9. [Les métriques : définitions complètes](#9-les-métriques--définitions-complètes)
 10. [Résultats détaillés v1 vs v2](#10-résultats-détaillés-v1-vs-v2)
 11. [Anti-overfitting : pourquoi on peut faire confiance aux chiffres](#11-anti-overfitting--pourquoi-on-peut-faire-confiance-aux-chiffres)
-12. [Limites, déductions, mon avis](#12-limites-déductions-mon-avis)
+12. [Gestion du déséquilibre 7:1](#12-gestion-du-déséquilibre-71)
+13. [Limites, déductions, mon avis](#13-limites-déductions-mon-avis)
 
 ---
 
@@ -599,9 +600,56 @@ Le modèle apprend les **détails spécifiques** du train (y compris le bruit) a
 
 ---
 
-## 12. Limites, déductions, mon avis
+## 12. Gestion du déséquilibre 7:1
 
-### 12.1 Ce qui marche bien
+Le dataset est déséquilibré : **5 205 normaux vs 746 attaques** (ratio ~7:1). Un modèle "bête" qui prédit toujours "Normal" obtient 87.5% d'accuracy sans rien apprendre. Voici les **5 mesures** prises pour traiter ce problème, et les choix qu'on a **volontairement écartés**.
+
+### 12.1 Ce qu'on a fait
+
+1. **`class_weight='balanced'`** dans le RandomForest
+   → chaque erreur sur une attaque pèse **~7× plus** qu'une erreur sur un normal. Force le modèle à prendre les attaques au sérieux malgré leur sous-représentation.
+
+2. **Métriques adaptées au déséquilibre**
+   → on **ignore l'accuracy** (trompeuse à 87.5%), on regarde **F1, F2, recall par classe et AUC**. Ces métriques mettent en lumière la performance sur la classe minoritaire (attaques).
+
+3. **Seuil de décision F2-optimisé** (v2)
+   → 0.50 → 0.40. Le F2 pondère le recall **2× plus** que la precision, ce qui favorise la détection de la classe minoritaire. C'est l'amélioration la plus directe : +12 pts de recall sans toucher au modèle.
+
+4. **Vocabulaire élargi à 1 500 features** (v2)
+   → donne plus de signal au modèle pour capter les patterns rares des attaques sous-représentées (Web_Shell : 16 fichiers en test, Meterpreter : 19). Plus de features = plus de chances de trouver une signature discriminante même pour les classes rares.
+
+5. **Split stratifié par scénario** (`GroupShuffleSplit`)
+   → préserve la proportion 7:1 dans **train ET test**. Pas de fold qui se retrouverait sans attaques, ce qui rendrait l'évaluation impossible.
+
+### 12.2 Ce qu'on a volontairement écarté
+
+| Méthode écartée | Pourquoi |
+|---|---|
+| **SMOTE / oversampling** | Crée des attaques synthétiques par interpolation. Risque d'overfitting sur ces points fabriqués + complexité inutile vu que `class_weight='balanced'` suffit. |
+| **Undersampling des normaux** | On perdrait ~4 500 fichiers normaux utiles. Réduit l'information disponible pour apprendre la frontière. |
+| **Threshold moving aveugle** | Baisser le seuil sans méthode (ex: 0.3 arbitraire) marche mais n'est pas reproductible. On le fait via F2 sur CV train → choix justifiable. |
+
+### 12.3 Pourquoi cette approche est suffisante
+
+Le combo **`class_weight='balanced'` + seuil F2** fait le travail **proprement, sans toucher aux données**. C'est l'approche académique standard : on respecte la distribution réelle du dataset, on n'invente pas de samples, on règle le compromis precision/recall via le seuil de décision.
+
+**Résultat concret :** un modèle naïf (toujours "Normal") aurait :
+- Accuracy = 87.5%
+- Recall = 0%
+- F1 = 0
+
+Notre v2 a :
+- Accuracy = 96.3% (1 730/1 797 prédictions correctes)
+- Recall = 91%
+- F1 = 0.86
+
+→ Le déséquilibre n'est pas un obstacle, c'est juste un paramètre du problème qu'on a traité explicitement.
+
+---
+
+## 13. Limites, déductions, mon avis
+
+### 13.1 Ce qui marche bien
 
 - ✅ **Recall global 91%** sur les attaques, **2.9% de fausses alertes** : opérationnellement viable
 - ✅ **5 familles sur 6** détectées à ≥ 89%
@@ -610,14 +658,14 @@ Le modèle apprend les **détails spécifiques** du train (y compris le bruit) a
 - ✅ **Calibration** : les probas peuvent être utilisées pour prioriser les alertes
 - ✅ **Pas d'overfitting** : gap CV-test = 0.035
 
-### 12.2 Ce qui ne marche pas
+### 13.2 Ce qui ne marche pas
 
 - ❌ **Web_Shell détecté à 44%**. Trois familles d'explications :
   1. **Sous-représentation** : seulement 16 fichiers en test
   2. **Signature noyée** : un Web_Shell exécuté par Apache produit majoritairement des syscalls d'Apache normal
   3. **Limite intrinsèque des n-grammes** : ils captent l'ordre local mais pas le "contexte sémantique" qui distingue une requête HTTP malveillante d'une requête légitime
 
-### 12.3 Ce qu'on a appris (déductions)
+### 13.3 Ce qu'on a appris (déductions)
 
 #### Déduction 1 — L'AUC seule ne suffit pas
 v1 et v2 ont des AUC quasi identiques (0.98 vs 0.985), mais des recall très différents (79% vs 91%). **L'AUC mesure le potentiel de séparation, le seuil et le vocabulaire mesurent ce qu'on en extrait.**
@@ -634,7 +682,7 @@ Sans `GroupShuffleSplit` et `GroupKFold`, on aurait probablement obtenu un F1 > 
 #### Déduction 5 — Élargir le vocabulaire bat raffiner le modèle
 On n'a touché ni les hyperparamètres RF ni la calibration entre v1 et v2. Le gain vient à **75% du vocabulaire (1-3 grammes, 1500 features)** et à **25% du seuil**. Souvent, mieux structurer les features bat le tuning fin.
 
-### 12.4 Mon avis (synthèse honnête)
+### 13.4 Mon avis (synthèse honnête)
 
 **Le modèle v2 est suffisant pour un PFE.** Il atteint des chiffres défendables (recall 91%, AUC 0.985, FPR 2.9%) avec une méthodologie propre et documentée. La limitation Web_Shell est honnêtement reportée et techniquement explicable.
 
@@ -646,7 +694,7 @@ On n'a touché ni les hyperparamètres RF ni la calibration entre v1 et v2. Le g
 
 **Mais aucun de ces leviers n'est nécessaire pour le PFE.** Le couple "Random Forest + n-grammes + seuil tuné par F2" est un choix **classique, défendable, reproductible**. C'est exactement ce qu'un jury de PFE attend.
 
-### 12.5 Trois phrases pour la soutenance
+### 13.5 Trois phrases pour la soutenance
 
 1. *"Nous atteignons un recall de 91% avec un taux de faux positifs de 2.9% sur le test set, via un Random Forest calibré sur des n-grammes (1 à 3) de syscalls, avec un seuil de décision optimisé par F2-score sur la CV du train."*
 

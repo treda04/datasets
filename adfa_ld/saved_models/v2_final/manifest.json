@@ -1,0 +1,29 @@
+{
+  "model_version": "v2_final",
+  "random_state": 42,
+  "rf_params": {
+    "n_estimators": 200,
+    "max_depth": 20,
+    "min_samples_leaf": 2,
+    "class_weight": "balanced"
+  },
+  "calibration": {
+    "method": "isotonic",
+    "cv": 5
+  },
+  "cv_metrics": {
+    "f1_mean": 0.8280973954639181,
+    "f1_std": 0.019140504846912328,
+    "f1_folds": [
+      0.8,
+      0.8151658767772512,
+      0.8558558558558559,
+      0.8376068376068376,
+      0.831858407079646
+    ],
+    "auc_mean": 0.9848905353936013,
+    "auc_std": 0.006487794451160075
+  },
+  "decision_threshold": 0.4000000000000001,
+  "threshold_choice_rule": "argmax F2 sur cross_val_predict probas du train (GroupKFold cv=5)"
+}

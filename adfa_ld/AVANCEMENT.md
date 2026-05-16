@@ -11,7 +11,7 @@ Suivi continu du travail. Mis à jour après chaque phase du [PLAN.md](PLAN.md).
 | **Phase 1 — Exploration (EDA)** | ✅ Terminée | 2026-05-14 | Notebook EDA créé et exécuté, stats réelles obtenues |
 | **Phase 2 — Prototype modeling (v1)** | 🟡 Terminée avec réserves | 2026-05-16 | Pipeline complet ; recall 79% ; Web_Shell sous-détecté (31%) |
 | **Phase 2 bis — Itération v2** | ✅ Terminée | 2026-05-16 | Vocabulaire élargi (1-3 grammes, 1500 features) + seuil ajusté → recall 91% (+12 pts) |
-| **Phase 3 — Production scripts** | ⏳ À faire | — | 3 scripts reproductibles + métriques finales |
+| **Phase 3 — Production scripts** | ✅ Terminée | 2026-05-16 | 3 scripts modulaires + utilitaires partagés, parité parfaite avec notebook v2 |
 
 **Légende:** 🟡 En cours · ✅ Terminé · ⏳ À faire · ❌ Bloqué
 
@@ -655,7 +655,135 @@ Pour détecter Web_Shell efficacement il faudrait :
 
 ---
 
-## ⏳ Phase 3 — Production scripts
+## ✅ Phase 3 — Production scripts
+
+**Statut:** Terminée
+**Date:** 2026-05-16
+**Sortie:** dossier `pipeline/` + `data/processed/` + `saved_models/v2_final/` + `results/final/`
+
+---
+
+### A. Objectif
+
+Extraire le pipeline du notebook `03_modeling_v2.ipynb` en **3 scripts production modulaires** reproductibles en ligne de commande, sans dépendance à Jupyter. Le code des notebooks devient figé comme référence ; la production passe par les scripts.
+
+### B. Architecture choisie
+
+```
+pipeline/
+├── __init__.py
+├── io_utils.py        ← Module partagé : chargement, constantes, paths
+├── preprocess.py      ← Étape 1/3 : load + clean + split + vectorize
+├── train.py           ← Étape 2/3 : RF + calibration + tuning seuil
+└── evaluate.py        ← Étape 3/3 : métriques + figures
+```
+
+**Principe DRY :** les constantes (`RANDOM_STATE`, `NGRAM_RANGE`, hyperparams RF, etc.) et le code de chargement vivent dans `io_utils.py` → modifiables en un seul endroit, partagés par les 3 scripts.
+
+### C. Détail des scripts
+
+#### 1. `preprocess.py`
+- Charge les 5 951 fichiers via `io_utils.load_dataset`
+- Nettoie (filtre `length >= 10`, tokens entiers)
+- Splitte avec `GroupShuffleSplit(test_size=0.3, random_state=42)` groupé par scénario
+- Vectorise avec `CountVectorizer(ngram_range=(1,3), max_features=1500, min_df=2)`
+- **Vérifie** que `overlap scénarios = 0` (assertion qui crashe le pipeline en cas de leakage)
+- **Sorties** : `data/processed/X_{train,test}.npz` + `y_{train,test}.csv` + `vectorizer.pkl` + `manifest.json`
+
+#### 2. `train.py`
+- Charge les matrices et le label-set produits par `preprocess.py`
+- CV 5-fold `GroupKFold` pour diagnostic d'overfitting
+- **Tuning du seuil** via `cross_val_predict` (probas calibrées sur train sans toucher au test) + argmax F2 sur le balayage 0.05→0.95
+- Entraîne le modèle final `CalibratedClassifierCV(RF, method='isotonic', cv=5)` sur tout le train
+- **Sorties** : `saved_models/v2_final/model.pkl` + `manifest.json` (avec seuil 0.40) + `threshold_scan.csv`
+
+#### 3. `evaluate.py`
+- Charge `model.pkl` + `vectorizer.pkl` + test set + `manifest.json` (seuil)
+- Une seule prédiction sur test avec seuil figé
+- Calcule F1, F2, AUC, Precision, Recall, Gap CV-Test
+- Génère 4 figures : confusion, ROC+PR, recall par famille, top 30 features
+- **Sorties** : `results/final/metrics.json` + `classification_report.txt` + 4 PNG + 2 CSV
+
+### D. Vérification de la parité avec le notebook v2
+
+Le pipeline a été exécuté **bout en bout** et les chiffres ont été comparés à ceux du notebook `03_modeling_v2.ipynb` :
+
+| Métrique | Notebook v2 | Pipeline v2_final | Δ |
+|---|---|---|---|
+| F1 | 0.8635 | 0.8635 | 0 ✅ |
+| F2 | 0.8908 | 0.8908 | 0 ✅ |
+| AUC | 0.9852 | 0.9852 | 0 ✅ |
+| Precision | 0.8217 | 0.8217 | 0 ✅ |
+| Recall | 0.9099 | 0.9099 | 0 ✅ |
+| Gap CV-Test F1 | 0.0354 | 0.0354 | 0 ✅ |
+| Seuil choisi | 0.40 | 0.40 | 0 ✅ |
+| Recall par famille | identiques | identiques | 0 ✅ |
+
+**Reproductibilité bit-à-bit garantie** par `random_state=42` partout (split, RF, calibration, CV).
+
+### E. Usage final
+
+```bash
+# Depuis adfa_ld/
+python pipeline/preprocess.py     # ~10 s
+python pipeline/train.py          # ~3-5 min (selon CPU)
+python pipeline/evaluate.py       # ~10 s
+```
+
+→ Produit le modèle de production complet en 3 commandes.
+
+### F. Artefacts finaux
+
+```
+data/processed/
+├── X_train.npz, X_test.npz    matrices creuses
+├── y_train.csv, y_test.csv    labels + scénarios + familles
+├── vectorizer.pkl             CountVectorizer fitté sur train
+└── manifest.json              paramètres du split + vectorizer
+
+saved_models/v2_final/
+├── model.pkl                  CalibratedClassifierCV(RF) entraîné
+├── manifest.json              hyperparams + métriques CV + seuil 0.40
+└── threshold_scan.csv         balayage de seuils (audit)
+
+results/final/
+├── metrics.json               toutes les métriques de test
+├── classification_report.txt
+├── confusion_matrix.png
+├── roc_pr_curves.png
+├── per_attack_family.{csv,png}
+└── feature_importance.{csv,png}
+```
+
+### G. Checklist Phase 3 (PLAN.md §6 points 11-14)
+
+- [x] **11. Extraire le code** en 3 scripts dans `pipeline/`
+- [x] **12. Lancer en séquence** sans erreur
+- [x] **13. Vérifier** que les sorties `saved_models/` et `results/` sont complètes
+- [x] **14. README.md à jour** avec métriques finales et instructions
+
+✅ **Phase 3 complète.**
+
+---
+
+## 🎯 Travail global — terminé
+
+Les trois phases du PLAN sont closes. Le projet ADFA-LD est livrable :
+
+| Livrable | Localisation |
+|---|---|
+| Données documentées | `EXPLICATION_DATA.md` |
+| EDA reproductible | `notebooks/01_eda.ipynb` + `results/eda/` |
+| Prototype v1 | `notebooks/02_modeling.ipynb` + `results/modeling/` |
+| Modèle v2 retenu | `notebooks/03_modeling_v2.ipynb` + `results/modeling_v2/` |
+| Pipeline production | `pipeline/{io_utils,preprocess,train,evaluate}.py` |
+| Modèle final | `saved_models/v2_final/` |
+| Résultats finaux | `results/final/` |
+| Documentation modèle | `EXPLICATION_MODELS.md` |
+| Vue d'ensemble | `README.md` |
+| Journal de travail | `AVANCEMENT.md` (ce fichier) |
+
+
 
 **Statut:** À faire
 
