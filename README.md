@@ -18,7 +18,6 @@ Posture méthodologique : un **audit interne** a identifié 4 problèmes de leak
 | CIC-IDS-2017 v2 | XGBoost | Réseau (NetFlow) | **0.994** | — (4-class) |
 | ADFA-LD v2 | RF + Calibrated | Host Linux (syscalls) | **0.957** | 0.979 |
 | SIEM Windows v3 | RF régularisé | Host Windows (events) | **0.667** (LOOHO 0.669 ± 0.014) | 0.573 |
-| Lateral Movement | RF + Calibrated | Identité / Atomic Red Team | **0.836** (F1 attaque) / 0.681 macro | 0.694 |
 
 ✅ Anti-leakage validé (toutes les features dominantes sous 25 %).
 ✅ Anti-overfitting validé (gap CV − test < 0.10).
@@ -33,7 +32,6 @@ datasets/
 ├── adfa_ld/                      Préprocesseur + modèle ADFA-LD v2
 ├── cicids2017/                   Préprocesseur + modèle CIC-IDS-2017 v2
 ├── siem_windows/                 Préprocesseur + modèle SIEM Windows v3
-├── lateral_movement/             Préprocesseur + modèle Lateral Movement
 ├── models/                       Modèles agrégés (build via setup_models_dir.py)
 ├── src/orchestrator/             SOCOrchestrator + mapping MITRE ATT&CK
 ├── tests/                        16 tests pytest sur l'orchestrateur
@@ -101,12 +99,7 @@ python siem_windows/preprocessing/preprocess_siem.py
 python siem_windows/training/train_siem.py
 python siem_windows/evaluation/generate_siem_results.py
 
-# 4) Lateral Movement (identité)
-python lateral_movement/preprocessing/preprocess_lateral.py
-python lateral_movement/training/train_lateral.py
-python lateral_movement/evaluation/generate_lateral_results.py
-
-# 5) Construction du dossier models/ pour l'orchestrateur
+# 4) Construction du dossier models/ pour l'orchestrateur
 python scripts/setup_models_dir.py
 ```
 
@@ -194,7 +187,8 @@ Tests couverts :
 
 - ✅ Tous les modèles **supervisés** (RF, XGBoost, LightGBM, LogReg).
 - ✅ `random_state=42` partout.
-- ✅ CIC-IDS-2017 et Lateral Movement non ré-entraînés depuis la validation initiale.
+- ✅ CIC-IDS-2017 non ré-entraîné depuis la validation initiale.
+- ℹ️ Lateral movement écarté du périmètre final (dataset insuffisant — voir `RAPPORT_ENCADRANT_V2.md` §9).
 - ✅ Tests pytest sur l'orchestrateur (16 tests passants).
 - ✅ Pas de feature dominante > 0.40 (preuve anti-leakage).
 

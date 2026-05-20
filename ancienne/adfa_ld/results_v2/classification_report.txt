@@ -1,8 +1,0 @@
-              precision    recall  f1-score   support
-
-        Sain     0.8889    0.9639    0.9249        83
-     Attaque     0.9799    0.9359    0.9574       156
-
-    accuracy                         0.9456       239
-   macro avg     0.9344    0.9499    0.9411       239
-weighted avg     0.9483    0.9456    0.9461       239

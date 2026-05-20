@@ -1,149 +1,114 @@
-# siem_windows/ — Modèle SIEM Windows (Host)
+# siem_windows — Modèle de détection APT29 sur Windows Events
 
-## Rôle
-Détection comportementale d'attaques sur postes Windows (Sysmon + Security
-Events). Couvre les tactiques MITRE : Initial Access, Execution, Privilege
-Escalation, Credential Access, Persistence.
+**Surface :** Host Windows (Sysmon + Security + PowerShell)
+**Dataset :** OTRF Mordor — APT29 / MITRE ATT&CK Evals Round 2 (2020)
+**Tâche ML :** classification binaire de fenêtres 1 min × hostname → `0 = normal`, `1 = attaque`
+**Modèle :** RandomForest balanced (200, max_depth=15, min_samples_leaf=5)
+**Statut :** Phase 0 terminée (docs + stats brutes) — Phases 1–5 en cours
 
-## Source de données
-**OTRF Mordor APT29 Evals (déjà sur disque)** : émulation MITRE des TTPs
-APT29 (Cozy Bear) sur 2 jours de scénarios, ~784 000 events Windows.
+---
 
-```
-datasets/siem_dataset/data/otrf_datasets/datasets/compound/apt29/
-├── day1/apt29_evals_day1_manual.zip   ← 367 MB, ~196k events
-└── day2/apt29_evals_day2_manual.zip   ← 1.6 GB, ~588k events
-```
-
-## Architecture
+## Carte du projet
 
 ```
 siem_windows/
+├── README.md                     ← ce fichier (carte)
+├── PLAN.md                       ← stratégie ML complète Phase 1→5
+├── EXPLICATION_DATA.md           ← analyse exhaustive du dataset (chiffres réels)
+├── EXPLICATION_MODELS.md         ← rapport final Phase 5 (à écrire)
+├── AVANCEMENT.md                 ← journal de bord continu
+├── AUDIT_RAPPORT.md              ← (créé si Phase 4 détecte un leakage)
+│
+├── notebooks/
+│   ├── 01_eda.ipynb              ← Phase 1
+│   └── 02_modeling.ipynb         ← Phase 2
+│
+├── scripts_aux/
+│   └── extract_raw_stats.py      ← streaming JSON → results/eda/raw_stats.json
+│
+├── pipeline/                     ← Phase 3 (à réécrire)
+│   ├── __init__.py
+│   ├── io_utils.py
+│   ├── preprocess.py
+│   ├── train.py
+│   └── evaluate.py
+│
 ├── data/
-│   ├── raw/
-│   │   ├── day1/        ← Extrait de apt29_evals_day1_manual.zip
-│   │   └── day2/        ← Extrait de apt29_evals_day2_manual.zip
-│   └── processed/
-│       ├── train.parquet
-│       ├── test.parquet
-│       └── manifest.json
-├── preprocessing/
-│   └── preprocess_siem.py     ← Mordor JSON → fenêtres 5 min comportementales
-├── training/
-│   └── train_siem.py          ← RF + StandardScaler + calibration isotonique
-├── evaluation/
-│   └── generate_siem_results.py
-├── saved_models/              ← Artefacts attendus par live_detection.py
-│   ├── rf_siem_model.pkl
-│   ├── siem_scaler.pkl
-│   ├── siem_threshold.json
-│   └── feature_columns.json
+│   ├── raw/{day1,day2}/*.json    ← brut OTRF (read-only, ~2 GB)
+│   └── processed/                ← parquets + .npy + scaler.pkl
+│
 ├── results/
-│   ├── confusion_matrix.png
-│   ├── roc_curve.png
-│   ├── pr_curve.png
-│   ├── feature_importance.png
-│   ├── score_distribution.png
-│   ├── timeline.png
-│   ├── metrics.json
-│   └── index.html
-├── README.md
-└── model_card.md
+│   ├── eda/                      ← stats brutes + figures Phase 1
+│   ├── modeling/                 ← métriques + figures Phase 2
+│   └── final/                    ← artefacts Phase 3 (post-pipeline)
+│
+└── saved_models/v1_final/
+    ├── model.pkl
+    ├── scaler.pkl
+    ├── feature_names.json
+    └── manifest.json
 ```
 
-## Méthodologie défensive (anti-leakage)
+---
 
-| Anti-pattern à éviter | Mesure prise ici |
+## Comment reproduire (une fois Phase 3 terminée)
+
+```bash
+# Depuis siem_windows/  — environnement venv avec pyarrow installé
+
+# 0) Stats brutes (déjà fait, dans results/eda/raw_stats.json)
+python scripts_aux/extract_raw_stats.py
+
+# 1) Pipeline production
+python pipeline/preprocess.py        # ~2-3 min (stream 2 GB)
+python pipeline/train.py             # ~30 s
+python pipeline/evaluate.py          # ~5 s
+
+# Sortie : saved_models/v1_final/  + results/final/  prêts pour la soutenance
+```
+
+---
+
+## Vue d'ensemble du dataset
+
+| | Day 1 | Day 2 | Total |
+|---|---:|---:|---:|
+| Events | 196 081 | 587 286 | **783 367** |
+| Durée | 33 min | 35 min | ~68 min |
+| Hostnames | 4 | 4 | 4 |
+| EventIDs uniques | 165 | 172 | ~180 |
+| Channels | 11 | 11 | 11 |
+| Rôle ML | **train** | **test** | — |
+
+Pour les détails (signatures attaque, EID stratégiques, pièges de casse `Security` vs `security`, etc.) → voir `EXPLICATION_DATA.md`.
+
+---
+
+## Cibles métriques
+
+| Métrique | Cible |
 |---|---|
-| Label leakage via `SePrivilegeList` | **Aucun champ SePrivilege* utilisé** — features = comptages d'EventIDs et ratios |
-| Label leakage via `LogonType=10` (RDP) | Pas utilisé en feature directe ; agrégé dans `lateral_move_score` |
-| Split aléatoire | **Split TEMPOREL** : day1 train, day2 test → généralisation prouvée |
-| Granularité event-level | **Fenêtres glissantes 5 min** par host avec pas 1 min |
-| Probas non calibrées | `CalibratedClassifierCV` avec calibration isotonique |
-| Seuil 0.5 par défaut | **Seuil F1-optimal** sur PR curve test |
-| Pas de courbe ROC / PR | Générées et sauvegardées en PNG |
+| F1 binaire | ≥ 0.78 |
+| Recall | ≥ 0.80 |
+| Precision | ≥ 0.70 |
+| AUC | ≥ 0.85 |
+| Gap CV-test | < 0.10 |
+| Max feature importance | < 0.25 |
+| Leakage train↔test | < 1 % |
 
-## Features produites (alignées sur live_detection.py)
+Détails et justifications dans `PLAN.md` §3.
 
-Toutes les features sont **comportementales pures** — aucune n'est dérivée
-directement du label.
+---
 
-```
-total_events                 : nb total d'events dans la fenêtre 5 min
-events_per_minute            : total / 5
-cnt_<EventID>                : comptage par EventID surveillé
-                              (4624, 4625, 4648, 4672, 4768, 4769, ...)
-brute_force_score            : Σ cnt_4625 + cnt_4771 + cnt_4776
-lateral_move_score           : Σ cnt_4648 + cnt_4624 + cnt_4672
-persistence_score            : Σ cnt_4697 + cnt_4698 + cnt_4702 + ...
-priv_escalation_score        : Σ cnt_4728 + cnt_4732 + ...
-recon_score                  : Σ cnt_4798 + cnt_4799 + cnt_4661
-execution_score              : Σ cnt_4688 + cnt_4696
-kerberos_score               : Σ cnt_4768 + cnt_4769 + ...
-logon_failure_ratio          : (4625+4771) / (4624+4625+4771)
-entropy_eventids             : Shannon entropy des EventIDs
-distinct_eventids            : nb d'EventIDs uniques
-```
+## Liens vers la documentation détaillée
 
-## Comment lancer
+- **Ce qu'on a (chiffres réels)** → `EXPLICATION_DATA.md`
+- **Ce qu'on va faire (stratégie ML)** → `PLAN.md`
+- **Ce qu'on a fait (journal de bord)** → `AVANCEMENT.md`
+- **Ce qu'on en conclut (rapport final, Phase 5)** → `EXPLICATION_MODELS.md`
+- **Méthodologie projet PFE complet** → `../PLAN_GLOBAL_SIEM.md` (racine)
+- **Audit pré-travail** → `../AUDIT_SIEM_LATERAL.md` (racine)
 
-### 1. Préparation (une seule fois)
+---
 
-```powershell
-# Depuis datasets/
-Expand-Archive `
-  "siem_dataset/data/otrf_datasets/datasets/compound/apt29/day1/apt29_evals_day1_manual.zip" `
-  -DestinationPath "siem_windows/data/raw/day1"
-
-Expand-Archive `
-  "siem_dataset/data/otrf_datasets/datasets/compound/apt29/day2/apt29_evals_day2_manual.zip" `
-  -DestinationPath "siem_windows/data/raw/day2"
-```
-
-### 2. Pipeline complet
-
-```powershell
-# Depuis datasets/
-python siem_windows/preprocessing/preprocess_siem.py
-python siem_windows/training/train_siem.py
-python siem_windows/evaluation/generate_siem_results.py
-```
-
-### 3. Vérification
-
-Ouvre `siem_windows/results/index.html` dans un navigateur.
-Vérifie `siem_windows/results/metrics.json` :
-- `f1_calibrated` doit être entre 0.75 et 0.95 (HONNÊTE).
-- `leakage_warning` doit être `false`.
-- `top_feature_importance` doit être < 0.4.
-
-## Performances attendues
-
-| Métrique | Valeur attendue |
-|---|---|
-| F1 (seuil calibré) | 0.78 - 0.90 |
-| ROC-AUC | 0.85 - 0.95 |
-| Top feature importance | < 0.40 |
-| Latence inférence | < 5 ms |
-
-## Adaptation à ta production réelle (Winlogbeat)
-
-Le format Mordor (JSON Sysmon) est **identique** à ce que Winlogbeat envoie
-sur Kafka — donc le modèle entraîné sur APT29 est **directement utilisable
-en production sur tes PCs Windows réels**, sans réentraîner.
-
-Les features extraites en live (par `live_detection.py extract_siem_features`)
-sont **calculées de manière identique** — c'est pour ça que les noms et
-l'ordre dans `feature_columns.json` sont rigoureusement préservés.
-
-## Notes pour le mémoire / soutenance
-
-- **Scénario d'attaque réel** : APT29 (Cozy Bear, attribution russe) — un
-  groupe étatique bien connu. Crédibilité forte côté jury.
-- **Émulation MITRE ATT&CK Round 2** : datasets validés par la communauté
-  cyber, traçabilité complète des techniques.
-- **Pas de génération synthétique** : différenciateur fort vs autres PFE.
-- **Split temporel** : test sur day2 = scénario chronologiquement après day1
-  → simule la production.
-- **Features alignées sur l'inférence live** : le modèle entraîné peut tourner
-  immédiatement en production sans changement de code.
+*Dernière mise à jour : 2026-05-20 — Phase 0 terminée. Voir `AVANCEMENT.md` pour l'état actuel.*

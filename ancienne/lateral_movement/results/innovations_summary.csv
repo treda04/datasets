@@ -1,5 +1,0 @@
-method,f1_05,f1_macro_optimal,f1_attack_optimal,f1_normal_optimal,roc_auc,avg_precision,best_threshold,f1_cv_mean,f1_cv_std,overfit_gap
-RF baseline,0.8615,0.6813,0.8364,0.5263,0.6944,0.8693,0.7872,0.9132,0.0289,0.0516
-XGBoost tuned,0.8615,0.6574,0.8148,0.5,0.619,0.8155,0.866,0.9063,0.0184,0.0448
-LightGBM,0.8615,0.6563,0.8421,0.4706,0.5992,0.8192,0.7794,0.9142,0.0177,0.0527
-Stacking (RF+XGB+LGBM)->LR,0.7778,0.6476,0.8667,0.4286,0.6468,0.8237,0.4212,0.7213,0.1567,-0.0565

@@ -1,2 +1,0 @@
-host,n_windows,score_mean,score_max,n_alerts,n_true_attacks
-NEWYORK.dmevals.local,69,0.5589422827758466,0.9131281904326704,68,34

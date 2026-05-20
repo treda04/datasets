@@ -41,11 +41,12 @@ from .mitre_mapping import event_id_to_technique, techniques_from_features
 LOG = logging.getLogger("soc_orchestrator")
 
 # Routing source -> clé modèle interne
+# NB : 3 modèles supervisés retenus pour le PFE (lateral_movement écarté
+# pour cause de dataset insuffisant — voir RAPPORT_ENCADRANT_V2.md)
 SOURCE_TO_MODEL = {
     "netflow":        "cicids",
     "linux_syscall":  "adfa",
     "windows_event":  "siem",
-    "identity_event": "lateral",
 }
 
 # Seuils par défaut si threshold.json absent
@@ -53,7 +54,6 @@ DEFAULT_THRESHOLDS = {
     "cicids":  0.50,
     "adfa":    0.507,
     "siem":    0.507,
-    "lateral": 0.787,
 }
 
 
@@ -166,7 +166,7 @@ class SOCOrchestrator:
             raise FileNotFoundError(f"models_dir introuvable : {models_dir}")
 
         self.bundles: dict[str, ModelBundle] = {}
-        for key in ["cicids", "adfa", "siem", "lateral"]:
+        for key in ["cicids", "adfa", "siem"]:
             b = _load_model_bundle(key, self.models_dir)
             if b is not None:
                 self.bundles[key] = b

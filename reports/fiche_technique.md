@@ -38,11 +38,12 @@
 | CIC-IDS-2017 v2 (XGBoost) | 0.9939 | — | 0.9996 ± 0.00002 | `Fwd Packet Length Std` (0.232) |
 | ADFA-LD v2 (RF + Calibrated) | 0.9574 | 0.9788 | 0.9486 ± 0.0080 | n-grams distribués (< 0.05) |
 | SIEM Windows v3 (RF reg.) | 0.667 / **0.669 ± 0.014 LOOHO** | 0.573 / 0.538 ± 0.133 LOOHO | 0.745 ± 0.088 | `events_per_minute` (0.115) |
-| Lateral Movement (RF + Calibrated) | 0.836 (F1 attaque) / 0.681 macro | 0.694 | 0.919 ± 0.028 | `entropy_eventids` (0.085) |
 
-**Preuve d'absence de leakage :** aucune feature ne dépasse 25 % d'importance sur les 4 modèles.
+**Preuve d'absence de leakage :** aucune feature ne dépasse 25 % d'importance sur les 3 modèles.
 
-**Preuve d'absence d'overfitting :** gap CV − test < 0.10 sur les 4 modèles.
+**Preuve d'absence d'overfitting :** gap CV − test < 0.10 sur les 3 modèles.
+
+**Note :** une 4ème surface (Lateral Movement / Atomic Red Team) a été explorée puis écartée pour cause de dataset insuffisant (37 sessions) — voir `RAPPORT_ENCADRANT_V2.md` §9.
 
 ---
 
@@ -53,12 +54,10 @@ datasets/
 ├── adfa_ld/                      Préprocesseur + modèle ADFA-LD v2
 ├── cicids2017/                   Préprocesseur + modèle CIC-IDS-2017 v2
 ├── siem_windows/                 Préprocesseur + modèle SIEM Windows v3
-├── lateral_movement/             Préprocesseur + modèle Lateral Movement
 ├── models/                       Modèles agrégés pour SOCOrchestrator
 │   ├── cicids/{model,scaler,features,label_encoder}.{pkl,json}
 │   ├── adfa/{model,vectorizer,features,threshold}.{pkl,json}
-│   ├── siem/{model,scaler,features,threshold}.{pkl,json}
-│   └── lateral/{model,scaler,features,threshold}.{pkl,json}
+│   └── siem/{model,scaler,features,threshold}.{pkl,json}
 ├── src/orchestrator/
 │   ├── soc_orchestrator.py       Classe SOCOrchestrator
 │   └── mitre_mapping.py          EventID -> MITRE ATT&CK
@@ -92,7 +91,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### Reproduction des 4 entraînements
+### Reproduction des 3 entraînements
 
 ```bash
 # 1) CIC-IDS-2017 v2
@@ -108,10 +107,6 @@ python siem_windows/preprocessing/preprocess_siem.py
 python siem_windows/training/train_siem.py
 python siem_windows/evaluation/generate_siem_results.py
 
-# 4) Lateral Movement
-python lateral_movement/preprocessing/preprocess_lateral.py
-python lateral_movement/training/train_lateral.py
-python lateral_movement/evaluation/generate_lateral_results.py
 ```
 
 ### Construction du dossier models/

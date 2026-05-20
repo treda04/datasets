@@ -22,7 +22,14 @@
       "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\mitre_evaluation_v4.py 2>&1 | Select-Object -Last 30)",
       "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\setup_models_dir.py 2>&1 | Select-Object -Last 6; echo \"---TESTS---\"; .venv\\\\Scripts\\\\python.exe -m pytest tests/ -q 2>&1 | Select-Object -Last 5)",
       "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; $env:PYTHONUTF8=\"1\"; .venv\\\\Scripts\\\\python.exe scripts\\\\build_excel_report.py 2>&1; echo \"---DEMO---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 25)",
-      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1 | Select-Object -Last 3; echo \"---DEMO v4---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 30)"
+      "PowerShell($env:PYTHONIOENCODING=\"utf-8\"; .venv\\\\Scripts\\\\python.exe scripts\\\\generate_demo_scenario.py 2>&1 | Select-Object -Last 3; echo \"---DEMO v4---\"; .venv\\\\Scripts\\\\python.exe scripts\\\\run_demo.py --speed 0 2>&1 | Select-Object -Last 30)",
+      "Bash(python pipeline/train.py)",
+      "Bash(python -m nbconvert --to notebook --execute --inplace 01_eda.ipynb --ExecutePreprocessor.timeout=1800)",
+      "Bash(python -m nbconvert --to notebook --execute --inplace 02_modeling.ipynb --ExecutePreprocessor.timeout=3600)",
+      "Bash(python pipeline/preprocess.py)",
+      "Bash(python pipeline/evaluate.py)",
+      "Bash(tasklist)",
+      "Bash(python -c ' *)"
     ]
   }
 }

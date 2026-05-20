@@ -1,0 +1,66 @@
+{
+  "generated_utc": "2026-05-20T02:16:08.946559+00:00",
+  "duration_s": 8.232967,
+  "rf_params": {
+    "n_estimators": 200,
+    "max_depth": 15,
+    "min_samples_leaf": 5,
+    "class_weight": "balanced",
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "cv": {
+    "folds": 3,
+    "f1_mean": 0.6393345216874629,
+    "f1_std": 0.06828643089035602,
+    "f1_folds": [
+      0.7058823529411765,
+      0.5454545454545454,
+      0.6666666666666666
+    ],
+    "auc_mean": 0.9398789173789174,
+    "auc_std": 0.015365316454032182,
+    "auc_folds": [
+      0.9458333333333333,
+      0.9550000000000001,
+      0.9188034188034188
+    ]
+  },
+  "decision_threshold": 0.3,
+  "n_features": 33,
+  "feature_names": [
+    "total_events",
+    "events_per_minute",
+    "distinct_eventids",
+    "entropy_eventids",
+    "cnt_1",
+    "cnt_3",
+    "cnt_7",
+    "cnt_8",
+    "cnt_10",
+    "cnt_11",
+    "cnt_12",
+    "cnt_13",
+    "cnt_22",
+    "cnt_4103",
+    "cnt_4104",
+    "cnt_4624",
+    "cnt_4625",
+    "cnt_4648",
+    "cnt_4672",
+    "cnt_4688",
+    "cnt_4697",
+    "cnt_4698",
+    "cnt_4702",
+    "cnt_4768",
+    "cnt_4769",
+    "cnt_4771",
+    "cnt_4776",
+    "brute_force_score",
+    "lateral_move_score",
+    "persistence_score",
+    "execution_score",
+    "kerberos_score",
+    "logon_failure_ratio"
+  ]
+}

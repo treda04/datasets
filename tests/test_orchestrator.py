@@ -40,10 +40,6 @@ class TestRouting:
         ev = {"source": "windows_event", "event_id": "3"}
         assert orch.route(ev) == "siem"
 
-    def test_route_identity_event(self, orch):
-        ev = {"source": "identity_event", "event_id": "4"}
-        assert orch.route(ev) == "lateral"
-
     def test_route_invalid_source(self, orch):
         with pytest.raises(ValueError):
             orch.route({"source": "unknown", "event_id": "x"})
@@ -59,14 +55,14 @@ class TestCorrelation:
              "model": "siem", "score": 0.95, "is_attack": True,
              "mitre_technique": "T1059"},
             {"event_id": "2", "host": "PC1", "timestamp": 1100.0,
-             "model": "lateral", "score": 0.88, "is_attack": True,
+             "model": "adfa", "score": 0.88, "is_attack": True,
              "mitre_technique": "T1078"},
         ]
         corr = orch.correlate(alerts, window_seconds=300)
         assert len(corr) == 1
         assert corr[0]["host"] == "PC1"
         assert corr[0]["severity"] == "CRITICAL"
-        assert set(corr[0]["models_triggered"]) == {"siem", "lateral"}
+        assert set(corr[0]["models_triggered"]) == {"siem", "adfa"}
         assert "T1059" in corr[0]["mitre_techniques"]
         assert "T1078" in corr[0]["mitre_techniques"]
 
@@ -90,7 +86,7 @@ class TestCorrelation:
              "model": "siem", "score": 0.95, "is_attack": True,
              "mitre_technique": "T1059"},
             {"event_id": "2", "host": "PC1", "timestamp": 2000.0,
-             "model": "lateral", "score": 0.88, "is_attack": True,
+             "model": "adfa", "score": 0.88, "is_attack": True,
              "mitre_technique": "T1078"},
         ]
         corr = orch.correlate(alerts, window_seconds=300)
@@ -103,7 +99,7 @@ class TestCorrelation:
              "model": "siem", "score": 0.95, "is_attack": True,
              "mitre_technique": "T1059"},
             {"event_id": "2", "host": "PC1", "timestamp": 1100.0,
-             "model": "lateral", "score": 0.30, "is_attack": False,
+             "model": "adfa", "score": 0.30, "is_attack": False,
              "mitre_technique": None},
         ]
         corr = orch.correlate(alerts, window_seconds=300)
@@ -120,7 +116,7 @@ class TestNoCorrelationDifferentHosts:
              "model": "siem", "score": 0.95, "is_attack": True,
              "mitre_technique": "T1059"},
             {"event_id": "2", "host": "PC2", "timestamp": 1050.0,
-             "model": "lateral", "score": 0.88, "is_attack": True,
+             "model": "adfa", "score": 0.88, "is_attack": True,
              "mitre_technique": "T1078"},
         ]
         corr = orch.correlate(alerts, window_seconds=300)

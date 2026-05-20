@@ -1,0 +1,31 @@
+{
+  "model_version": "v1_final",
+  "random_state": 42,
+  "rf_params": {
+    "n_estimators": 200,
+    "max_depth": 25,
+    "min_samples_leaf": 5,
+    "class_weight": "balanced"
+  },
+  "cv_metrics": {
+    "f1_macro_mean": 0.9686022284236582,
+    "f1_macro_std": 0.001994468462752664,
+    "f1_macro_folds": [
+      0.9669080850579033,
+      0.9661385913206963,
+      0.9688998492113557,
+      0.9718382367099487,
+      0.9692263798183874
+    ]
+  },
+  "n_train_samples": 220280,
+  "classes": [
+    "Bots",
+    "Brute Force",
+    "DDoS",
+    "DoS",
+    "Normal Traffic",
+    "Port Scanning",
+    "Web Attacks"
+  ]
+}
